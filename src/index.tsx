@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import  './index.scss';
+import  './styles/styles.scss';
 import App from './App';
 import { RepositoryIocProvider } from './services/services/config/context';
 

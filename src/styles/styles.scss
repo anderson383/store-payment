@@ -1,0 +1,39 @@
+@import 'scss/partial/flex';
+@import 'scss/partial/fonts';
+@import 'scss/partial/forms';
+@import 'scss/partial/alerts';
+@import 'scss/partial/scrolls';
+@import 'scss/partial/inputs';
+@import 'scss/partial/buttons';
+@import 'scss/partial/typography';
+@import 'scss/modules/var';
+@import 'scss/modules/mixins';
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  all: unset;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
