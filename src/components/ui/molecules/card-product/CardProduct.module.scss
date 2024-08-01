@@ -1,0 +1,39 @@
+
+@import '../../../../styles/scss/modules/mixins';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #CCCCCC;
+  max-width: 25%;
+  width: 100%;
+
+  @include media ('md') {
+    max-width: 50%;
+  }
+
+  .content {
+    padding: 1rem 1rem 0;
+
+    caption {
+      font-size: 0.8rem;
+      color: #6F7F8A;
+    }
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem;
+
+    caption {
+      font-size: 0.6rem;
+    }
+
+    p {
+      font-weight: 600;
+      color: #FF5A5A;
+    }
+  }
+}
