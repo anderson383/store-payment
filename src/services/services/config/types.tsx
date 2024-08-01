@@ -1,0 +1,3 @@
+const TYPES = {PAYMENT_REPOSITORY: Symbol.for('PAYMENT_REPOSITORY')};
+
+export {TYPES};

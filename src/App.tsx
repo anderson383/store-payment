@@ -5,7 +5,6 @@ function App() {
   return (
     <BrowserRouter>
       {/* <RouterPage /> */}
-      <h1>Page initial</h1>
     </BrowserRouter>
   );
 }
