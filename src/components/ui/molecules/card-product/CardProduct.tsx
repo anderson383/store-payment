@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom'
 import styles from './CardProduct.module.scss'
 
-export const CardProduct = () => {
+interface CardProductProps {
+  to: string
+}
+export const CardProduct:React.FC<CardProductProps> = ({to}) => {
 
   return  (
-    <div className={styles.card}>
+    <Link to={to} className={styles.card}>
       <img src='https://static.dafiti.com.co/p/adidas-performance-7127-2407752-4-zoom.jpg'/>
 
       <div className={styles.content}>
@@ -14,6 +18,6 @@ export const CardProduct = () => {
         <caption>Stock 14</caption>
         <p>$250.000</p>
       </div>
-    </div>
+    </Link >
   )
 }

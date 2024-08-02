@@ -1,0 +1,32 @@
+
+$border-radius: 10px;
+.button {
+  background: #FF5A5A;
+  padding: 1rem;
+  text-align: center;
+  border: none;
+
+  &__primary { 
+    background-color: #333333;
+    color: white;
+  }
+
+  &__fullwidth {
+    width: 100%;
+  }
+
+  &__rounded {
+    border-radius: $border-radius
+  }
+
+  &__rounded_outlined {
+    border-radius: $border-radius;
+    border: 1px solid #CBD7E1;
+    background-color: transparent;
+    color: #333333;
+  }
+
+  &__sm {
+    padding: 0.5rem 1rem;
+  }
+}
