@@ -1,0 +1,11 @@
+
+.buttonIcon {
+  padding: 0.8rem;
+  border: none;
+  background-color: transparent;
+  height: max-content;
+
+  &:focus {
+    outline: none;
+  }
+}
