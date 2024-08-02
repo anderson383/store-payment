@@ -1,3 +1,4 @@
+
 import { Button } from 'components/ui/atoms/button/Button';
 import styles from './detail.module.scss'
 import Slider from "react-slick";
@@ -5,8 +6,16 @@ import { ButtonIcon } from 'components/ui/atoms/button-icon/ButtonIcon';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'constants/routes';
+import { useState } from 'react';
+import { ModalPayment } from 'components/features/modal-payment/ModalPayment';
+import { RootStateType } from 'redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setModalStateSlice } from '../../redux/payment/slices/payment-slice';
+
 
 export const DetailPage = () => {
+  const dispatch = useDispatch()
+  const { modalPayment } = useSelector(({ paymentReducer }: RootStateType) => paymentReducer.payment)
 
   var settings = {
     dots: true,
@@ -17,6 +26,11 @@ export const DetailPage = () => {
     arrows: false,
     adaptiveHeight: true,
   };
+
+
+  const handleModal = () => {
+    dispatch(setModalStateSlice(!modalPayment))
+  }
 
   return (
     <div className={styles.detailPage}>
@@ -75,10 +89,11 @@ export const DetailPage = () => {
             </div>
             <div className={styles.payment}>
               <input type="text" value={1}/>
-              <Button text="COMPRAR" size='fullwidth' />
+              <Button text="COMPRAR" size='fullwidth' onClick={() => handleModal()} />
             </div>
           </div>
         </section>
+        <ModalPayment />
       </div>
     </div>
   )
