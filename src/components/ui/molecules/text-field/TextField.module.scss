@@ -1,0 +1,31 @@
+.textField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+
+  &__fullwidth {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid #747474;
+    height: 40px;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .error {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #f84e4e;
+  }
+}

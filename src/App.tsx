@@ -3,14 +3,18 @@ import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter } from 'react-router-dom';
 import { RouterPage } from './pages/router-page';
 import { StoreLayout } from 'components/layouts/store.layout';
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
   return (
-    <BrowserRouter>
-      <StoreLayout>
-        <RouterPage />
-      </StoreLayout>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <StoreLayout>
+          <RouterPage />
+        </StoreLayout>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

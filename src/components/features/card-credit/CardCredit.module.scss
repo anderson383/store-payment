@@ -1,0 +1,49 @@
+@import '../../../styles/scss/modules/mixins';
+
+.creditCard {
+  color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  background: rgb(193,193,193);
+  background: -moz-linear-gradient(87deg, rgba(193,193,193,1) 0%, rgba(0,0,0,1) 100%);
+  background: -webkit-linear-gradient(87deg, rgba(193,193,193,1) 0%, rgba(0,0,0,1) 100%);
+  background: linear-gradient(87deg, rgba(193,193,193,1) 0%, rgba(0,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c1c1c1",endColorstr="#000000",GradientType=1);
+
+  img {
+    width: 60px;
+    height: 40px;
+
+    @include media ('md') {
+      width: 50px;
+      height: 30px;
+    }
+  }
+  .content {
+    margin-top: 3rem;
+    text-align: justify; 
+
+    & > p {
+      font-size: 1.3rem;
+    }
+    @include media ('md') {
+      margin-top: 1.5rem;
+    }
+  }
+  .infoCard {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media ('md') {
+      margin-top: 1.5rem;
+    }
+
+    caption {
+      font-size: 0.6rem;
+      width: max-content;
+    }
+  }
+}
