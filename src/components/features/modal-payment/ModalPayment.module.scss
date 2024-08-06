@@ -10,3 +10,14 @@
     font-weight: 600;
   }
 }
+
+.detailProdut {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  img {
+    border-radius: 8px;
+  }
+}

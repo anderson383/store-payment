@@ -89,3 +89,16 @@ export const setTemporalCustomerInfo = (state:PaymentModel, { payload }: Payload
     customerInfo: payload
   })
 }
+
+
+export const setTemporalProductInfo = (state:PaymentModel, { payload }: PayloadAction<PaymentModel['productInfo']>):PaymentModel => {
+  sessionStorage.setItem('informationTemporal', JSON.stringify({
+    ...getInformationTemporal(),
+    productInfo: payload
+  }))
+
+  return ({
+    ...state,
+    productInfo: payload
+  })
+}

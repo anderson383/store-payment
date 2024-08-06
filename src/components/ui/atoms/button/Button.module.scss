@@ -30,3 +30,31 @@ $border-radius: 10px;
     padding: 0.5rem 1rem;
   }
 }
+
+.button_icon {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  
+}
+
+.loading {
+  svg {
+    animation: rotate 1s linear infinite;
+  }
+
+  &:disabled {
+    cursor: inherit;
+    background-color: #CBD7E1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

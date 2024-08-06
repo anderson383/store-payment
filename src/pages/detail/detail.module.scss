@@ -42,6 +42,14 @@
     }
     .detailProduct {
       padding: 1rem;
+      caption {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
+      .description {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+      }
     }
 
     .info {
