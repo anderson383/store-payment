@@ -1,5 +1,6 @@
 
 export const creditCardRequired = 'El número de tarjeta es obligatorio';
+export const fieldRequired = 'Campo requerido'
 
 export const creditCardMaxDigit = 'El número de tarjeta debe tener 16 dígitos';
 
