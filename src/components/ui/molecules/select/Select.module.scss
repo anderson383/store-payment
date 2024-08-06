@@ -1,0 +1,74 @@
+@import '../../../../styles/scss/modules/var';
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  width: 100%;
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  .input_select {
+    position: relative;
+  }
+
+  .chevron_activ {
+    transform: scaleY(-1);
+  }
+
+  .chevron {
+    height: max-content;
+    position: absolute;
+    right: 0.5rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.select_options {
+  z-index: 200000;
+  position: absolute;
+  top: 115%;
+  width: 100%;
+  margin-top: auto;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 4px 12px 0px #00000040;
+  max-height: 300px;
+  overflow: auto;
+
+  .item_select {
+    padding: 0.5rem;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+.selectTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  height: 40px;
+  padding-right: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #747474;
+
+  &:focus {
+    outline: none !important;
+  }
+}
+
+.error {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #f84e4e;
+}

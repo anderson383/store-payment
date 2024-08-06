@@ -81,9 +81,9 @@ export const DetailPage = () => {
                   <caption>US</caption>
                 </div>
                 <div className={styles.sizes}>
-                  <Button type='rounded' size='sm'  text="39" />
-                  <Button type='rounded_outlined' size='sm' text="40" />
-                  <Button type='rounded_outlined' size='sm'  text="49" />
+                  <Button variant='rounded' size='sm'  text="39" />
+                  <Button variant='rounded_outlined' size='sm' text="40" />
+                  <Button variant='rounded_outlined' size='sm'  text="49" />
                 </div>
               </div>
             </div>
