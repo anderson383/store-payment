@@ -1,15 +1,22 @@
-import { useEffect } from "react";
-import usePaymentRepository from "../../hooks/use-payment-repository";
+import { useEffect, useState } from "react";
 import { CardProduct } from "components/ui/molecules/card-product/CardProduct";
 import styles from './index.module.scss'
 import { ROUTES } from "constants/routes";
+import useInventaryRepository from "hooks/use-inventary-repository";
+import { ProductType } from "types/inventary";
 
 export const IndexPage = () => {
 
-  const repository = usePaymentRepository();
+  const [listProducts, setListProducts] = useState<ProductType[]>([])
+
+  const repository = useInventaryRepository()
 
   useEffect(() => {
-    repository.testCall()
+    repository.listProducts().then(response => {
+      if (response) {
+        setListProducts(response)
+      }
+    })
   }, [])
 
   return (
@@ -20,7 +27,12 @@ export const IndexPage = () => {
         </div>
         <div className={styles.container_card}>
           {
-            [1, 2, 3, 4, 5, 6, 7, 8].map(() => <CardProduct to={ROUTES.detailproduct.path} />)
+            listProducts.map((product) =>
+              <CardProduct key={product.id}
+                product={product}
+                to={ROUTES.detailproduct.path.replace(':id', product.id)}
+                />
+              )
           }
         </div>
       </div>

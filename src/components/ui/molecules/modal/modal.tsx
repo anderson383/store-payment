@@ -19,7 +19,6 @@ const Modal: React.FC<ModalPanelProps> = ({
   children,
   openModal,
   setOpenModal,
-  isCloseable,
   className,
   closeOutClick = false,
   title
@@ -37,13 +36,7 @@ const Modal: React.FC<ModalPanelProps> = ({
           <Dialog.Overlay className={styles.dialog_overlay} onClick={() => setOpenModal(true)} />
           <Dialog.Content
             className={`${ styles.dialog_content } ${ className }`}
-            onPointerDownOutside={e => closeOutClick && e.preventDefault()}
-          >
-            {/* {isCloseable && (
-              <button className={`btn-transparent ${ styles.btn_close } `} onClick={() => setOpenModal(false)}>
-                <span className="material-icons">highlight_off</span>
-              </button>
-            )} */}
+            onPointerDownOutside={e => closeOutClick && e.preventDefault()}>
             <div className={styles.title}>
               <h2>{title}</h2>
             </div>

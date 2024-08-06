@@ -13,6 +13,7 @@ import { Select } from 'components/ui/molecules/select/Select';
 import { OptionType } from 'types/common';
 import { validationSchema, validationSchemaCustomer } from './validations';
 import styles from './ModalPayment.module.scss'
+import { IconCircleDashedMinus, IconLoader2 } from "@tabler/icons-react";
 interface ModalPaymentProps {
 }
 
@@ -20,7 +21,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
 
   const [step, setStep] = useState(0)
   const dispatch = useDispatch()
-  const { modalPayment, creditCard: CREDIT_CARD_FORM, customerInfo: CUSTOMER_INFO_FORM } = useSelector(({ paymentReducer }: RootStateType) => paymentReducer.payment)
+  const { productInfo: PRODUCT_INFO, modalPayment, creditCard: CREDIT_CARD_FORM, customerInfo: CUSTOMER_INFO_FORM } = useSelector(({ paymentReducer }: RootStateType) => paymentReducer.payment)
 
   const cuotesNumbers:OptionType[] = Array.from({ length: 12 }, (v, i) => ({ value: i+1, label: i+1 }));
 
@@ -199,6 +200,10 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
                 
               <div className="d-flex justify-end gap-2">
                 <Button
+                  onClick={() => {
+                    handleModal()
+                  }}
+                  type='button'
                   text='Cancel'
                   color='primary'
                   size='sm'
@@ -236,7 +241,18 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
             <span>******{CREDIT_CARD_FORM.cardNumber.slice(-4)}</span><span></span>
           </div>
         </div>
-        
+
+        <div className={styles.detailProdut}>
+          <div>
+            <p>{ PRODUCT_INFO?.name }</p>
+            <p><b>Quantity:</b> { PRODUCT_INFO.quantity }</p>
+            <p><b>$ </b>{ PRODUCT_INFO?.price * PRODUCT_INFO.quantity }</p>
+          </div>
+          <div>
+            <img width={70} src={PRODUCT_INFO?.images[0] || ''} alt="Product detail" />
+          </div>
+        </div>
+        <hr />
         <div className="d-flex justify-between">
           <Button
             type='button'
@@ -254,6 +270,8 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
             color='primary'
             size='sm'
             variant='rounded'
+            loading
+            icon={<IconCircleDashedMinus />}
           />
         </div>
       </div>

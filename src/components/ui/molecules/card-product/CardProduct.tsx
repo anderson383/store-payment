@@ -1,22 +1,24 @@
 import { Link } from 'react-router-dom'
 import styles from './CardProduct.module.scss'
+import { ProductType } from 'types/inventary';
 
 interface CardProductProps {
-  to: string
+  to: string;
+  product: ProductType
 }
-export const CardProduct:React.FC<CardProductProps> = ({to}) => {
+export const CardProduct:React.FC<CardProductProps> = ({to, product}) => {
 
   return  (
     <Link to={to} className={styles.card}>
-      <img src='https://static.dafiti.com.co/p/adidas-performance-7127-2407752-4-zoom.jpg'/>
+      <img src={product.images.length ? product.images[0] : ''} alt={product.name} />
 
       <div className={styles.content}>
-        <caption>Aldo</caption>
-        <p>Reid Lace-Up Shoes Multi</p>
+        <caption>Tennis</caption>
+        <p>{product.name}</p>
       </div>
       <div className={styles.info}>
-        <caption>Stock 14</caption>
-        <p>$250.000</p>
+        <caption>Stock {product.stock}</caption>
+        <p>${product.price}</p>
       </div>
     </Link >
   )
