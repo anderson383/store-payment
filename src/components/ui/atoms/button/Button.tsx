@@ -9,6 +9,7 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   icon?: React.ReactNode;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 export const Button:React.FC<ButtonProps> = ({
@@ -19,11 +20,12 @@ export const Button:React.FC<ButtonProps> = ({
   size = 'md',
   icon,
   loading =false,
+  disabled = false,
   onClick = () => {} }
 ) => {
   return (
     <button
-      disabled={loading}
+      disabled={disabled || loading}
       type={type}
       onClick={onClick}
       className={

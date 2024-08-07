@@ -1,8 +1,6 @@
 import {
   Route, Routes
 } from 'react-router-dom';
-import { IndexPage } from './index';
-import { DetailPage } from './detail/detail';
 import { ROUTES } from 'constants/routes';
 
 export const RouterPage = () => {

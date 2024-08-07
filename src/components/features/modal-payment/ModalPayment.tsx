@@ -7,41 +7,61 @@ import { formatCreditCardNumber } from 'helper/formatCreditCardNumber.herlper';
 import { formatExpiryDate } from 'helper/formatExpiryDate.helper';
 import { Button } from 'components/ui/atoms/button/Button';
 import { RootStateType } from 'redux/store';
-import { setCreditCardStateSlice, setCustomerInfoStateSlice, setCvcStateSlice, setModalStateSlice, setTemporalCardCreditSlice, setTemporalCustomerInfoSlice } from '../../../redux/payment/slices/payment-slice';
+import { setClearDataTemporalSlice, setCreditCardStateSlice, setCustomerInfoStateSlice, setCvcStateSlice, setModalStateSlice, setModalSuccessSlice, setTemporalCardCreditSlice, setTemporalCustomerInfoSlice } from '../../../redux/payment/slices/payment-slice';
 import { useEffect, useState } from 'react';
 import { Select } from 'components/ui/molecules/select/Select';
 import { OptionType } from 'types/common';
 import { validationSchema, validationSchemaCustomer } from './validations';
 import styles from './ModalPayment.module.scss'
-import { IconCircleDashedMinus, IconLoader2 } from "@tabler/icons-react";
+import { IconCreditCard } from "@tabler/icons-react";
+import { toast } from "react-toastify";
+import usePaymentRepository from "hooks/use-payment-repository";
+import { getInformationTemporal } from "../../../redux/payment/actions/payment.action";
+import { useParams } from "react-router-dom";
 interface ModalPaymentProps {
 }
 
 export const ModalPayment:React.FC<ModalPaymentProps> = () => {
-
+  const titles = [
+    'Payment 1/2',
+    'Shipping address 2/2',
+    'Resume 3/3'
+  ]
   const [step, setStep] = useState(0)
-  const dispatch = useDispatch()
-  const { productInfo: PRODUCT_INFO, modalPayment, creditCard: CREDIT_CARD_FORM, customerInfo: CUSTOMER_INFO_FORM } = useSelector(({ paymentReducer }: RootStateType) => paymentReducer.payment)
 
+  const dispatch = useDispatch()
+  const paymentRepository = usePaymentRepository()
+  const params = useParams()
+  const [isLoading, setIsLoading] = useState(false)
+  const { productInfo: PRODUCT_INFO, modalPayment, creditCard: CREDIT_CARD_FORM, customerInfo: CUSTOMER_INFO_FORM } = useSelector(({ paymentReducer }: RootStateType) => paymentReducer.payment)
+  
   const cuotesNumbers:OptionType[] = Array.from({ length: 12 }, (v, i) => ({ value: i+1, label: i+1 }));
+
+  useEffect(() => {
+    const modalState = sessionStorage.getItem('modalPayment')
+    if (modalState) {
+      dispatch(setModalStateSlice(JSON.parse(modalState)))
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(params, PRODUCT_INFO)
+    const local = getInformationTemporal()
+    if (params.id && local.productInfo.id !== params.id) {
+      // debugger
+      dispatch(setClearDataTemporalSlice())
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(setCreditCardStateSlice())
     dispatch(setCustomerInfoStateSlice())
-  }, [modalPayment, sessionStorage.getItem('informationTemporal')])
-
-
+  }, [modalPayment])
 
   const handleModal = () => {
     dispatch(setModalStateSlice(!modalPayment))
-  }
-
-  const getInformationTemporal = () => {
-    const informationTemporal = sessionStorage.getItem('informationTemporal')
-    if (informationTemporal) {
-      return JSON.parse(informationTemporal)
-    }
-    return {}
+    dispatch(setCreditCardStateSlice())
+    dispatch(setCustomerInfoStateSlice())
   }
 
   const onSubmitCardCredit = (values: typeof CREDIT_CARD_FORM) => {
@@ -49,7 +69,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
     dispatch(setTemporalCardCreditSlice({
       cardHolderName :values.cardHolderName,
       cardNumber: values.cardNumber,
-      cvc:  undefined,
+      cvc:  values.cvc,
       expires: values.expires,
       numberCuotes: values.numberCuotes
     }))
@@ -61,11 +81,27 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
     dispatch(setTemporalCustomerInfoSlice(values))
   }
 
-  const titles = [
-    'Payment 1/2',
-    'Shipping address 2/2',
-    'Resume 3/3'
-  ]
+  const createPayment = async () => {
+    setIsLoading(true)
+    paymentRepository.createPayment({
+      customer: CUSTOMER_INFO_FORM,
+      creditCard: CREDIT_CARD_FORM,
+      product: PRODUCT_INFO
+    }).then(response => {
+      if(response) {
+        setIsLoading(false)
+        handleModal();
+        dispatch(setClearDataTemporalSlice())
+        dispatch(setModalSuccessSlice(true))
+      } else {
+        setIsLoading(false)
+        toast("Payment failed", {
+          type: 'error'
+        })
+      }
+    })
+  }
+
   return (
     <Modal
       openModal={modalPayment} 
@@ -202,6 +238,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
                 <Button
                   onClick={() => {
                     handleModal()
+                    dispatch(setClearDataTemporalSlice())
                   }}
                   type='button'
                   text='Cancel'
@@ -265,13 +302,14 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
             }}
           />
           <Button
+            loading={isLoading}
             type='submit'
             text='Pay'
             color='primary'
             size='sm'
             variant='rounded'
-            loading
-            icon={<IconCircleDashedMinus />}
+            icon={<IconCreditCard />}
+            onClick={() => createPayment()}
           />
         </div>
       </div>

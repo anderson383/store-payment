@@ -1,7 +1,8 @@
-import { PayloadAction, createAsyncThunk } from "@reduxjs/toolkit"
+import { PayloadAction } from "@reduxjs/toolkit"
 import { PaymentModel } from "../models/payment.models"
+import { INITIAL_STATE_PAYMENT } from "../slices/payment-slice"
 
-const getInformationTemporal = () => {
+export const getInformationTemporal = () => {
   const informationTemporal = sessionStorage.getItem('informationTemporal')
   if (informationTemporal) {
     return JSON.parse(informationTemporal)
@@ -10,13 +11,21 @@ const getInformationTemporal = () => {
 }
 
 export const setModalState = (state:PaymentModel, { payload }: PayloadAction<boolean>):PaymentModel => {
-
-  
+  sessionStorage.setItem('modalPayment', JSON.stringify(payload))
   return ({
     ...state,
     modalPayment: payload
   })
 }
+
+
+export const setModalSuccess = (state:PaymentModel, { payload }: PayloadAction<boolean>):PaymentModel => {
+  return ({
+    ...state,
+    modalSuccess: payload
+  })
+}
+
 
 export const setCreditCardState = (state:PaymentModel, { payload }: PayloadAction<boolean>):PaymentModel => {
   const informationTemporal = getInformationTemporal()
@@ -24,11 +33,11 @@ export const setCreditCardState = (state:PaymentModel, { payload }: PayloadActio
   return ({
     ...state,
     creditCard: {
-      cardHolderName: informationTemporal?.cardCredit?.cardHolderName || '',
-      expires: informationTemporal?.cardCredit?.expires || '',
-      cardNumber: informationTemporal?.cardCredit?.cardNumber || '',
+      cardHolderName: informationTemporal?.creditCard?.cardHolderName || '',
+      expires: informationTemporal?.creditCard?.expires || '',
+      cardNumber: informationTemporal?.creditCard?.cardNumber || '',
       cvc:state.creditCard.cvc,
-      numberCuotes: informationTemporal?.cardCredit?.numberCuotes
+      numberCuotes: informationTemporal?.creditCard?.numberCuotes
     }
   })
 }
@@ -56,6 +65,16 @@ export const setCustomerInfoState = (state:PaymentModel, { payload }: PayloadAct
       address: informationTemporal?.customer?.address || '',
       deparment: informationTemporal?.customer?.deparment || '',
       city: informationTemporal?.customer?.city || '',
+    },
+    productInfo: {
+      description: informationTemporal?.productInfo?.description || '',
+      id: informationTemporal?.productInfo?.id || '',
+      images: informationTemporal?.productInfo?.images || [],
+      name: informationTemporal?.productInfo?.name || '',
+      price: informationTemporal?.productInfo?.price || 0,
+      stock: informationTemporal?.productInfo?.stock || 0,
+      size: informationTemporal?.productInfo?.size || 0,
+      quantity: informationTemporal?.productInfo?.quantity || 0
     }
   })
 }
@@ -63,7 +82,7 @@ export const setCustomerInfoState = (state:PaymentModel, { payload }: PayloadAct
 export const setTemporalCardCredit = (state:PaymentModel, { payload }: PayloadAction<PaymentModel['creditCard']>):PaymentModel => {
   sessionStorage.setItem('informationTemporal', JSON.stringify({
     ...getInformationTemporal(),
-    cardCredit: {
+    creditCard: {
       cardHolderName :payload.cardHolderName,
       cardNumber: payload.cardNumber,
       cvc:  undefined,
@@ -101,4 +120,10 @@ export const setTemporalProductInfo = (state:PaymentModel, { payload }: PayloadA
     ...state,
     productInfo: payload
   })
+}
+
+export const setClearDataTemporal = ():PaymentModel => {
+  sessionStorage.setItem('informationTemporal', JSON.stringify(INITIAL_STATE_PAYMENT))
+
+  return INITIAL_STATE_PAYMENT
 }
