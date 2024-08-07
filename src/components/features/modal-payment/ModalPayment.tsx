@@ -47,7 +47,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
   useEffect(() => {
     console.log(params, PRODUCT_INFO)
     const local = getInformationTemporal()
-    if (params.id && local.productInfo.id !== params.id) {
+    if (params?.id && local?.productInfo.id !== params.id) {
       // debugger
       dispatch(setClearDataTemporalSlice())
     }
