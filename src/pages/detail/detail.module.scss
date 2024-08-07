@@ -14,30 +14,50 @@
     }
 
     .galery {
-      width: 40%;
+      width: 50%;
+      background-color: #F5F5F5;
+
+      & > div {
+        width: 70%;
+        margin: 0 auto;
+      }
+
+      img {
+        width: 100%;
+      }
 
       @include media ('md') {
         width: 100%;
         height: 100%;
       }
     }
-    .galery img {
-      width: 100%;
+    .infoProduct {
+      display: flex;
+      flex-direction: column;
+
+      .description {
+        flex: 1;
+      }
     }
 
 
     @include media ('md') {
       flex-direction: column;
     }
+
+    .sizes {
+      padding: 1rem;
+    }
     .sizeProduct {
       display: flex;
-      align-items: center;
       padding: 1rem;
+      padding-left: 0;
       gap: 1rem;
 
-      .sizes {
+      .sizesItems {
         display: flex;
         gap: 1rem;
+        flex-wrap: wrap;
       }
     }
     .detailProduct {
@@ -67,6 +87,14 @@
         background-color: #F5F5F5;
         border: none;
       }
+    }
+  }
+
+  .delivery {
+    padding: 1rem;
+    span {
+      color: #118348;
+      font-weight: 700;
     }
   }
 }

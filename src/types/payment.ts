@@ -1,9 +1,11 @@
+import { OptionType } from "./common";
+
 export interface CreditCardType {
   cardHolderName: string,
   expires: string
   cardNumber: string
   cvc: string
-  numberCuotes: string
+  numberCuotes: string | OptionType
 }
 
 export interface CustomerInfoType {

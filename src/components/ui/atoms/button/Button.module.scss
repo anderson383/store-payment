@@ -29,24 +29,22 @@ $border-radius: 10px;
   &__sm {
     padding: 0.5rem 1rem;
   }
+
+  &:disabled {
+    cursor: inherit;
+    background-color: #898989;
+  }
 }
 
 .button_icon {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-
-  
+  gap: 0.8rem; 
 }
 
 .loading {
   svg {
     animation: rotate 1s linear infinite;
-  }
-
-  &:disabled {
-    cursor: inherit;
-    background-color: #CBD7E1;
   }
 }
 

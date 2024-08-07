@@ -1,10 +1,12 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
 import { RouterPage } from './pages/router-page';
 import { StoreLayout } from 'components/layouts/store.layout';
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <RouterPage />
         </StoreLayout>
       </BrowserRouter>
+      <ToastContainer />
     </Provider>
   );
 }

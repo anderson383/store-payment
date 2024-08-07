@@ -12,17 +12,26 @@ import { RootStateType } from 'redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModalStateSlice, setTemporalProductInfoSlice } from '../../redux/payment/slices/payment-slice';
 import useInventaryRepository from 'hooks/use-inventary-repository';
-import usePaymentRepository from 'hooks/use-payment-repository';
 import { ProductType } from 'types/inventary';
+import { ModalSuccess } from 'components/features/modal-succes/ModalSucces';
+import { formatPrice } from 'helper/formatPrice';
 
+const SIZES = [
+  '36',
+  '37',
+  '38',
+  '39',
+  '40',
+  '41',
+  '42',
+]
 
 export const DetailPage = () => {
   const dispatch = useDispatch()
   const params = useParams()
   const inventaryRepository = useInventaryRepository()
-  const paymentRepository = usePaymentRepository()
   const [size, setSize] = useState(0)
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState('1')
   const [product, setProduct]= useState<ProductType>({
     description: '',
     id: '',
@@ -46,7 +55,6 @@ export const DetailPage = () => {
   useEffect(() => {
     inventaryRepository.detailProduct(params.id).then(response => {
       if (response) {
-        
         setProduct(response)
       }
     })
@@ -63,7 +71,7 @@ export const DetailPage = () => {
       setTemporalProductInfoSlice({
         ...product,
         size: size,
-        quantity: quantity
+        quantity: parseInt(quantity)
       })
     )
   }
@@ -88,37 +96,63 @@ export const DetailPage = () => {
               }
             </Slider>
           </div>
-          <div className="slider">
-            <div className={styles.detailProduct}>
-              <caption>Aldo</caption>
-              <p>{product?.name}</p>
-              <p className={styles.description}>{product?.description}</p>
-            </div>
-            <div className={styles.info}>
-              <caption>Stock {product?.stock}</caption>
-              <p>${product?.price}</p>
-            </div>
-            <hr />
-            <div className="description">
-              <p>Size: 39 US</p>
-              <div className={styles.sizeProduct}>
-                <div className="size">
-                  <caption>US</caption>
+          <div className={styles.infoProduct}>
+            <div className={styles.description} >
+              <div className={styles.detailProduct}>
+                <caption>Tennis</caption>
+                <p>{product?.name}</p>
+                <p className={styles.description}>{product?.description}</p>
+              </div>
+              <div className={styles.info}>
+                <caption>Stock {product?.stock}</caption>
+                <p>{formatPrice(product?.price)}</p>
+              </div>
+              <hr />
+              <div className={styles.sizes}>
+                <p>Size: {SIZES[size]} US</p>
+                <div className={styles.sizeProduct}>
+                  <div className="size">
+                    <caption>US</caption>
+                  </div>
+                  <div className={styles.sizesItems}>
+                    {
+                      SIZES.map((sizeItem, index) => (
+                        <Button 
+                          variant={ size === index ? 'rounded' : 'rounded_outlined' }
+                          size='sm'
+                          text={sizeItem}
+                          key={`size-${index}`}
+                          onClick={() => setSize(index)}
+                        />
+                      ))
+                    }
+                  </div>
                 </div>
-                <div className={styles.sizes}>
-                  <Button variant='rounded' size='sm'  text="39" />
-                  <Button variant='rounded_outlined' size='sm' text="40" />
-                  <Button variant='rounded_outlined' size='sm'  text="49" />
-                </div>
+              </div>
+
+              <div className={styles.delivery}>
+                <p><span>Llega gratis </span> en 3 días habiles.</p>
+                <p><span>Devolución gratis</span> Tienes 30 días desde que lo recibes.</p>
               </div>
             </div>
             <div className={styles.payment}>
-              <input type="text" value={quantity} onChange={(e) => setQuantity(e.target.value ? (parseInt(e.target.value) <= product?.stock )? parseInt(e.target.value) :  product?.stock : 0)}/>
-              <Button text="COMPRAR" size='fullwidth' onClick={() => payInProduct()} />
+              <input
+                type="text"
+                value={quantity}
+                onChange={(e) =>
+                  setQuantity(e.target.value ? (parseInt(e.target.value) <= product?.stock)? String(e.target.value) :  String(product?.stock) : '')}
+              />
+              <Button
+                disabled={quantity ? !parseInt(quantity) : false}
+                text="COMPRAR"
+                size='fullwidth'
+                onClick={() => payInProduct()}
+              />
             </div>
           </div>
         </section>
         <ModalPayment />
+        <ModalSuccess />
       </div>
     </div>
   )
