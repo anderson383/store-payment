@@ -5,15 +5,14 @@ import React, {
 import _ from 'lodash';
 import styles from './Select.module.scss';
 import { useField } from 'formik';
-import useClickOutside from 'hooks/use-click-outside';
+import useClickOutside from '../../../../hooks/use-click-outside';
 import { OptionType } from 'types/common';
 import ReactDOM from 'react-dom';
 import { IconChevronDown } from '@tabler/icons-react';
-import { useWindowSize } from 'hooks/use-window';
+import { useWindowSize } from '../../../../hooks/use-window';
 
 interface SelectProps {
   name: string;
-  id?: string;
   label?: string;
   placeholder?: string;
   options: OptionType[];
@@ -23,7 +22,6 @@ interface SelectProps {
 }
 
 export const Select: React.FC<SelectProps> = ({
-  id,
   label,
   placeholder,
   name,
@@ -83,12 +81,14 @@ export const Select: React.FC<SelectProps> = ({
         <div onClick={() => !disabled && setActive(!active)} ref={selectRef}>
           <IconChevronDown className={`${ styles.chevron }  ${ active ? styles.chevron_activ : '' }`} />
             <input
+              role='textfield'
               tabIndex={0}
               disabled={disabled}
               readOnly
-              id={id}
+              id={name}
               type="text"
               onBlur={e => {
+                helpers.setTouched(true);
                 field.onBlur(e);
               }}
               className={styles.selectTrigger}
@@ -123,7 +123,7 @@ export const Select: React.FC<SelectProps> = ({
           }
       </div>
       {
-       (meta?.error && meta.touched) ? <span className={styles.error}> {meta.error} </span> : null
+       (meta.error && meta.touched) ? <span className={styles.error}> {meta.error} </span> : null
       }
     </div>
   );

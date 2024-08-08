@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in Button component Should render the component 1`] = `
+<DocumentFragment>
+  <button
+    class="
+        button
+        button__ simple
+        button__md
+        button__primary
+        
+        
+        "
+    role="button"
+    type="button"
+  >
+    Test Button
+  </button>
+</DocumentFragment>
+`;

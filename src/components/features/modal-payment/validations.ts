@@ -6,7 +6,7 @@ import { cardHolderNameRequired,
   cvcRequired,
   expiresRequired,
   fieldRequired
-} from "constants/messages-validator";
+} from "../../../constants/messages-validator";
 
 export const validationSchema =  Yup.object({
   cardNumber: Yup.string()

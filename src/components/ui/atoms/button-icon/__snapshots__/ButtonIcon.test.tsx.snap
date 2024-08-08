@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in ButtonIcon component Should render the component 1`] = `
+<DocumentFragment>
+  <button
+    class="buttonIcon"
+  >
+    <svg
+      class="tabler-icon tabler-icon-arrow-left "
+      fill="none"
+      height="24"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5 12l14 0"
+      />
+      <path
+        d="M5 12l6 6"
+      />
+      <path
+        d="M5 12l6 -6"
+      />
+    </svg>
+  </button>
+</DocumentFragment>
+`;

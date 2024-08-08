@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in Store oayout component Should render the component 1`] = `
+<DocumentFragment>
+  <div
+    class="storeLayout"
+  >
+    <header
+      class="header"
+    >
+      <div>
+        <h1>
+          STORE ANDER
+        </h1>
+      </div>
+    </header>
+    <main>
+      <div>
+        Contenido renderizado correctamente
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;

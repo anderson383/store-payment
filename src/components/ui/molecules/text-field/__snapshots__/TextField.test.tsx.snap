@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in TextField component Should render the component 1`] = `
+<DocumentFragment>
+  <div
+    class="textField textField__md"
+  >
+    <label
+      for="test"
+    />
+    <input
+      id="test"
+      name="test"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
