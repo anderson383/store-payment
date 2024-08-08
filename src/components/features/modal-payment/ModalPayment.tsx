@@ -1,21 +1,21 @@
-import Modal from "components/ui/molecules/modal/modal"
+import Modal from "../../../components/ui/molecules/modal/modal"
 import { Formik } from "formik"
 import { useDispatch, useSelector } from "react-redux";
-import { TextField } from 'components/ui/molecules/text-field/TextField';
-import { CardCredit } from 'components/features/card-credit/CardCredit';
-import { formatCreditCardNumber } from 'helper/formatCreditCardNumber.herlper';
-import { formatExpiryDate } from 'helper/formatExpiryDate.helper';
-import { Button } from 'components/ui/atoms/button/Button';
+import { TextField } from '../../../components/ui/molecules/text-field/TextField';
+import { CardCredit } from '../../../components/features/card-credit/CardCredit';
+import { formatCreditCardNumber } from '../../../helper/formatCreditCardNumber.herlper';
+import { formatExpiryDate } from '../../../helper/formatExpiryDate.helper';
+import { Button } from '../../../components/ui/atoms/button/Button';
 import { RootStateType } from 'redux/store';
 import { setClearDataTemporalSlice, setCreditCardStateSlice, setCustomerInfoStateSlice, setCvcStateSlice, setModalStateSlice, setModalSuccessSlice, setTemporalCardCreditSlice, setTemporalCustomerInfoSlice } from '../../../redux/payment/slices/payment-slice';
 import { useEffect, useState } from 'react';
-import { Select } from 'components/ui/molecules/select/Select';
+import { Select } from '../../../components/ui/molecules/select/Select';
 import { OptionType } from 'types/common';
 import { validationSchema, validationSchemaCustomer } from './validations';
 import styles from './ModalPayment.module.scss'
 import { IconCreditCard } from "@tabler/icons-react";
 import { toast } from "react-toastify";
-import usePaymentRepository from "hooks/use-payment-repository";
+import usePaymentRepository from "../../../hooks/use-payment-repository";
 import { getInformationTemporal } from "../../../redux/payment/actions/payment.action";
 import { useParams } from "react-router-dom";
 interface ModalPaymentProps {
@@ -65,6 +65,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
   }
 
   const onSubmitCardCredit = (values: typeof CREDIT_CARD_FORM) => {
+    setStep(step + 1)
     dispatch(setCvcStateSlice(values.cvc))
     dispatch(setTemporalCardCreditSlice({
       cardHolderName :values.cardHolderName,
@@ -73,7 +74,6 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
       expires: values.expires,
       numberCuotes: values.numberCuotes
     }))
-    setStep(step + 1)
   }
 
   const onSubmitCustomer = (values: typeof CUSTOMER_INFO_FORM) => {
@@ -219,7 +219,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
               </div>
               <div className="group-form mb-3 d-flex gap-4 justify-between">
                 <TextField name='cardHolderName' label='CARD HOLDER NAME'  placeholder='FULL NAME' />
-                <Select name='numberCuotes' label='NUMBER CUOTES' placeholder='000' options={cuotesNumbers} />
+                <Select name='numberCuotes' label='NUMBER CUOTES' placeholder='0' options={cuotesNumbers} />
               </div>
               <div className="group-form mb-3 d-flex gap-4 justify-between">
                 <TextField 
@@ -275,7 +275,7 @@ export const ModalPayment:React.FC<ModalPaymentProps> = () => {
           </div>
           <div className="">
             <p>Credit card</p>
-            <span>******{CREDIT_CARD_FORM.cardNumber.slice(-4)}</span><span></span>
+            <span>******{CREDIT_CARD_FORM.cardNumber?.slice(-4)}</span><span></span>
           </div>
         </div>
 

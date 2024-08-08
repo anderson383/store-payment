@@ -25,6 +25,7 @@ export const Button:React.FC<ButtonProps> = ({
 ) => {
   return (
     <button
+      role='button'
       disabled={disabled || loading}
       type={type}
       onClick={onClick}

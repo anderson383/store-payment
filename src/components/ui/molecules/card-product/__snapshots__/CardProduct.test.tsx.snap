@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests in CardProduct component Should render the component 1`] = `
+<DocumentFragment>
+  <a
+    class="card"
+    href="/test"
+  >
+    <img
+      alt="test"
+      src=""
+    />
+    <div
+      class="content"
+    >
+      Tennis
+      <p>
+        test
+      </p>
+    </div>
+    <div
+      class="info"
+    >
+      Stock 0
+      <p>
+        $0
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;

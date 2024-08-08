@@ -1,4 +1,4 @@
-import { Header } from "components/features/header/Header"
+import { Header } from "../../components/features/header/Header"
 import styles from './store.layout.module.scss';
 
 interface StoreLayoutProps {

@@ -1,6 +1,9 @@
 
 export const formatExpiryDate = (input:string) => {
-  const sanitizedInput = input.replace(/\D/g, '');
+  if (!input) {
+    return '';
+  }
+  const sanitizedInput = input?.replace(/\D/g, '');
 
   if (sanitizedInput.length < 3) {
     return sanitizedInput;

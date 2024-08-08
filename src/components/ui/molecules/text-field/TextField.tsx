@@ -8,9 +8,7 @@ interface TextFieldProps {
   className?: string;
   label?: string;
   disabled?: boolean;
-  disableError?: boolean;
   props?: Record<string, any>;
-  variant?: 'filled' | 'outlined' | 'standard';
   size?: 'fullwidth' | 'md';
 }
 
@@ -20,9 +18,7 @@ export const TextField:React.FC<TextFieldProps> = ({
   type = 'text',
   className,
   label,
-  disableError = false,
   props,
-  variant = 'filled',
   disabled,
   size = 'md'
 }) => {
@@ -34,18 +30,18 @@ export const TextField:React.FC<TextFieldProps> = ({
 
   return (
     <div className={`${styles.textField} ${styles['textField__' + size]}`}>
-      <label htmlFor={name}> { label } </label>
+      <label htmlFor={name}>{ label }</label>
       <input
-        id={name}
         disabled={disabled}
         placeholder={placeholder}
         className={className}
         {...props}
         {...field}
         type={type}
+        id={name}
       />
       {
-       (meta?.error && meta.touched) ? <span className={styles.error}> {meta.error} </span> : null
+       (meta.error && meta.touched) ? <span className={styles.error}> {meta.error} </span> : null
       }
     </div>
   );
