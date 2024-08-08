@@ -3,7 +3,7 @@
 
 ## Overview
 
-**Store Payment** is a modern payment solution integrated into a React-based e-commerce platform. This application provides a seamless user experience for processing payments, managing customer information, and handling credit card transactions securely. Built with best practices in mind, it leverages Redux for state management, Formik for form handling, and several other libraries for enhanced functionality.
+**Store Payment** This application provides a seamless user experience for processing payments, managing customer information, and handling credit card transactions securely. Built with best practices in mind, it leverages Redux for state management, Formik for form handling, and several other libraries for enhanced functionality.
 
 ## Features
 
@@ -14,6 +14,11 @@
 - **Redux State Management:** Efficiently manages the application state using Redux Toolkit.
 - **Responsive Design:** Fully responsive layout for optimal viewing on various devices.
 - **Testing:** Comprehensive testing suite using Jest and React Testing Library.
+
+## Author
+
+- [Anderson Vargas Sepulveda](andersonvargas383@gmail.com)
+
 
 ## Technologies Used
 
@@ -45,19 +50,25 @@ To get started with the Store Payment application, follow these steps:
    ```bash
    git clone https://github.com/anderson383/store-payment.git
 
-2. **Intall dependencies:**
+2. **Navigate to the project directory::**
 
    ```bash
    cd store-payment
-2. **Intall dependencies:**
+3. **Intall dependencies:**
 
    ```bash
    npm install
-3. **Start the development server:**
+4. **Start the development server:**
 
    ```bash
    npm start
+4. **Execute test:**
+   ```bash
+   npm run test
 
+5. **Execute build:**
+   ```bash
+   npm run build
 ## Production Server
 
 This project is currently located at the following URL.
