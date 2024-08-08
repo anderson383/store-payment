@@ -18,10 +18,10 @@ export const validationSchema =  Yup.object({
     )
     .matches(/^[0-9\s]+$/, 'El número de tarjeta invalida'),
     
-    cardHolderName: Yup.string().required(cardHolderNameRequired),
+    cardHolderName: Yup.string().min(5).required(cardHolderNameRequired),
   expires: Yup.string()
     .required(expiresRequired)
-    .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, 'La fecha de expiración no es válida'),
+    .matches(/^(0[1-9]|1[0-2])\/?([0-9]{2})$/, 'The expiration date is not valid.'),
     cvc: Yup.string()
     .required(cvcRequired)
     .matches(/^[0-9]{3,4}$/, cvcMaxDigit),

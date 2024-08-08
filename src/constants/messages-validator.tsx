@@ -1,13 +1,12 @@
+export const creditCardRequired = 'The card number is required';
+export const fieldRequired = 'Field is required';
 
-export const creditCardRequired = 'El número de tarjeta es obligatorio';
-export const fieldRequired = 'Campo requerido'
+export const creditCardMaxDigit = 'The card number must have 16 digits';
 
-export const creditCardMaxDigit = 'El número de tarjeta debe tener 16 dígitos';
+export const cardHolderNameRequired = 'The name is required';
 
-export const cardHolderNameRequired = 'El nombre es obligatorio';
+export const expiresRequired = 'The expiration date is required';
 
-export const expiresRequired = 'La fecha de expiración es obligatoria';
+export const cvcRequired = 'The CVC is required';
 
-export const cvcRequired = 'El CVC es obligatorio';
-
-export const cvcMaxDigit = 'El CVC debe tener 3 o 4 dígitos';
+export const cvcMaxDigit = 'The CVC must have 3 or 4 digits';
