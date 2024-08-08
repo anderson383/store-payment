@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './CardProduct.module.scss'
 import { ProductType } from 'types/inventary';
+import { formatPrice } from '../../../../helper/formatPrice';
 
 interface CardProductProps {
   to: string;
@@ -18,7 +19,7 @@ export const CardProduct:React.FC<CardProductProps> = ({to, product}) => {
       </div>
       <div className={styles.info}>
         <caption>Stock {product.stock}</caption>
-        <p>${product.price}</p>
+        <p>{formatPrice(product.price)}</p>
       </div>
     </Link >
   )
