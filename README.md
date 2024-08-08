@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# Store Payment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+**Store Payment** is a modern payment solution integrated into a React-based e-commerce platform. This application provides a seamless user experience for processing payments, managing customer information, and handling credit card transactions securely. Built with best practices in mind, it leverages Redux for state management, Formik for form handling, and several other libraries for enhanced functionality.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **User-Friendly Interface:** Intuitive UI built with React, making it easy for users to navigate and complete transactions.
+- **Secure Payment Processing:** Utilizes Axios for API requests to ensure secure data transmission.
+- **Multi-Step Form:** Captures customer and payment information in a step-by-step process.
+- **Validation:** Implements Yup for form validation, ensuring all required fields are completed accurately.
+- **Redux State Management:** Efficiently manages the application state using Redux Toolkit.
+- **Responsive Design:** Fully responsive layout for optimal viewing on various devices.
+- **Testing:** Comprehensive testing suite using Jest and React Testing Library.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **Frontend:**
+  - [React](https://reactjs.org/)
+  - [Redux](https://redux.js.org/)
+  - [Formik](https://formik.org/)
+  - [Yup](https://github.com/jquense/yup)
+  - [Axios](https://axios-http.com/)
+  - [React Router](https://reactrouter.com/)
+  - [Sass](https://sass-lang.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Development Tools:**
+  - [GitFlow](https://www.atlassian.com/es/git/tutorials/comparing-workflows/gitflow-workflow)  
+  - [Jest](https://jestjs.io/)
+  - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+  - [TypeScript](https://www.typescriptlang.org/)
 
-### `npm run build`
+- **Deploy Icloud Service:**
+  - [Railway](https://railway.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get started with the Store Payment application, follow these steps:
 
-### `npm run eject`
+1. **Clone the repository:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   git clone https://github.com/anderson383/store-payment.git
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Intall dependencies:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   cd store-payment
+2. **Intall dependencies:**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```bash
+   npm install
+3. **Start the development server:**
 
-## Learn More
+   ```bash
+   npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Production Server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is currently located at the following URL.
+
+- **Railway server:**
+  - [Store payment](https://store-payment-production.up.railway.app/)
